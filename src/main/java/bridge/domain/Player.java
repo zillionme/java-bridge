@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.List;
+
 public class Player {
     private PlayerStatus playerStatus = new PlayerStatus();
     private boolean movingResult;
@@ -21,10 +23,6 @@ public class Player {
         location++;
     }
 
-    public int getLocation() {
-        return location;
-    }
-
     public void retry() {
         setDefault();
         tryCount++;
@@ -32,5 +30,10 @@ public class Player {
 
     public boolean isArrived(int bridgeSize) {
         return movingResult && location == bridgeSize;
+    }
+
+    public boolean compare(String playerMoving, List<String> bridge) {
+        String bridgeMoving = bridge.get(location);
+        return playerMoving.equals(bridgeMoving);
     }
 }

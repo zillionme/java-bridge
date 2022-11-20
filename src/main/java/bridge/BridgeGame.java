@@ -10,8 +10,7 @@ import java.util.List;
 public class BridgeGame {
     private final List<String> bridge;
     private final Player player;
-    private boolean isPlaying; // 생성시 start()메서드로 감싸고, true로 초기화함
-
+    private boolean isPlaying;
 
     public BridgeGame(List<String> bridge, Player player) {
         this.bridge = bridge;
@@ -19,12 +18,9 @@ public class BridgeGame {
         this.isPlaying = true;
     }
 
-    //Movingresult를 게임 클래스로? isMovable로 변경??
-    public boolean judge(String playerMoving) {
-        int location = player.getLocation();
-        String bridgeMoving = bridge.get(location);
 
-        return playerMoving.equals(bridgeMoving);
+    public boolean judge(String playerMoving) {
+        return player.compare(playerMoving, bridge);
     }
 
     public void move(String playerMoving) {
