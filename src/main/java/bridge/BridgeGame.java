@@ -48,4 +48,8 @@ public class BridgeGame {
         return player.getPlayerStatus();
     }
 
+    public int getPlayerTryCount() {
+        return player.getTryCount();
+    }
+
 }
