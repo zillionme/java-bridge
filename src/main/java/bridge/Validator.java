@@ -11,4 +11,10 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE);
         }
     }
+
+    public static void validateCommand(String input) {
+        if(!input.equals(COMMAND_RETRY) && !input.equals(COMMAND_QUIT)){
+            throw new IllegalArgumentException();
+        }
+    }
 }
