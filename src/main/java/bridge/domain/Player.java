@@ -15,10 +15,13 @@ public class Player {
         playerStatus.setDefault();
     }
 
-
     public void updatePlayerStatus(boolean movingResult, String playerMoving) {
         this.movingResult = movingResult;
         playerStatus.update(movingResult, location, playerMoving);
         location++;
+    }
+
+    public int getLocation() {
+        return location;
     }
 }
