@@ -37,4 +37,9 @@ public class BridgeGame {
     public void retry() {
         player.retry();
     }
+
+    public void quit() {
+        isPlaying = false;
+    }
+
 }
