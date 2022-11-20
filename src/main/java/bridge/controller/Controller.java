@@ -11,9 +11,6 @@ import bridge.view.OutputView;
 
 import java.util.List;
 
-import static bridge.BridgeRule.COMMAND_QUIT;
-import static bridge.BridgeRule.COMMAND_RETRY;
-
 public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -62,7 +59,7 @@ public class Controller {
     public void decideToKeepPlaying(BridgeGame bridgeGame) {
         if(player.isFailed()) { //이동결과 실패하면, 명령 받기
             String command = getCommand();
-            executeCommand(bridgeGame, command);
+            bridgeGame.executeCommand(command);
         }
     }
 
@@ -71,17 +68,6 @@ public class Controller {
         GameValidator.validateCommand(command);
 
         return command;
-    }
-
-    // 브릿지 게임에 들어가야 하는듯?
-    public void executeCommand (BridgeGame bridgeGame, String command) {
-        if(command.equals(COMMAND_RETRY)){
-            bridgeGame.retry();
-        }
-
-        if(command.equals(COMMAND_QUIT)){
-            bridgeGame.quit();
-        }
     }
 
 }

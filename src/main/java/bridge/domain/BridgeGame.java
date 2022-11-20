@@ -2,6 +2,9 @@ package bridge.domain;
 
 import java.util.List;
 
+import static bridge.BridgeRule.COMMAND_QUIT;
+import static bridge.BridgeRule.COMMAND_RETRY;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -34,9 +37,15 @@ public class BridgeGame {
         isPlaying = false;
     }
 
-//    public void execute(String command) {
-//
-//    }
+    public void executeCommand(String command) {
+        if(command.equals(COMMAND_RETRY)){
+            retry();
+        }
+
+        if(command.equals(COMMAND_QUIT)){
+            quit();
+        }
+    }
 
     // 게임 결과 (enum으로 처리가능) / movingResult도 저장할 수 있으면 좋을듯 하다.
     public boolean isSuccessfullyCompleted(){
