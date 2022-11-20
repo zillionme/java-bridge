@@ -24,4 +24,10 @@ public class Player {
     public int getLocation() {
         return location;
     }
+
+    public void retry() {
+        setDefault();
+        tryCount++;
+    }
+
 }
