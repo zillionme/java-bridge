@@ -30,4 +30,7 @@ public class Player {
         tryCount++;
     }
 
+    public boolean isArrived(int bridgeSize) {
+        return movingResult && location == bridgeSize;
+    }
 }
