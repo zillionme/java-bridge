@@ -1,5 +1,9 @@
 package bridge;
 
+import bridge.domain.Player;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+
 import java.util.List;
 
 import static bridge.BridgeRule.COMMAND_QUIT;
@@ -10,6 +14,7 @@ public class Controller {
     private final OutputView outputView = new OutputView();
     private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private final Player player = new Player();
 
     public void generate() {
         try {
@@ -29,7 +34,7 @@ public class Controller {
         int size = inputView.readBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
 
-        return new BridgeGame(bridge);
+        return new BridgeGame(bridge,player);
     }
 
     public void playBridgeGame(BridgeGame bridgeGame) {
