@@ -1,11 +1,11 @@
-package bridge;
+package bridge.validator;
 
 import static bridge.BridgeRule.*;
 import static bridge.BridgeRule.UP_BRIDGE_SYMBOL;
 import static bridge.Exception.ERROR_MESSAGE_INVALID_MOVE;
 import static bridge.Exception.ERROR_MESSAGE_OUT_OF_RANGE;
 
-public class Validator {
+public class GameValidator {
     public static void validateBridgeSize(int size) {
         if(BRIDGE_LENGTH_MAX < size || size < BRIDGE_LENGTH_MIN) {
             throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);

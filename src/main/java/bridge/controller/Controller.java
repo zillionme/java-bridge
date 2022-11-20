@@ -1,5 +1,10 @@
-package bridge;
+package bridge.controller;
 
+import bridge.BridgeMaker;
+import bridge.BridgeNumberGenerator;
+import bridge.BridgeRandomNumberGenerator;
+import bridge.validator.GameValidator;
+import bridge.domain.BridgeGame;
 import bridge.domain.Player;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -32,6 +37,7 @@ public class Controller {
 
     public BridgeGame createBridgeGame() {
         int size = inputView.readBridgeSize();
+        GameValidator.validateBridgeSize(size);
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         return new BridgeGame(bridge,player);
@@ -48,7 +54,7 @@ public class Controller {
 
     public void moveByInput(BridgeGame bridgeGame) {
         String playerMoving = inputView.readMoving();
-        Validator.validateMovingInput(playerMoving);
+        GameValidator.validateMovingInput(playerMoving);
 
         bridgeGame.move(playerMoving);
     }
@@ -62,11 +68,12 @@ public class Controller {
 
     public String getCommand() {
         String command = inputView.readGameCommand();
-        Validator.validateCommand(command);
+        GameValidator.validateCommand(command);
 
         return command;
     }
 
+    // 브릿지 게임에 들어가야 하는듯?
     public void executeCommand (BridgeGame bridgeGame, String command) {
         if(command.equals(COMMAND_RETRY)){
             bridgeGame.retry();

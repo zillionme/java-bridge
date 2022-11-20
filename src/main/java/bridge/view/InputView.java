@@ -26,14 +26,10 @@ public class InputView {
 
     //서비스로직
     public int castToInt(String input) {
-        if(isNumber(input)) {
+        if(ViewValidator.isNumber(input)) {
             return Integer.parseInt(input);
         }
         throw new IllegalArgumentException(ERROR_MESSAGE_FOR_NOT_NUMBER);
-    }
-
-    public boolean isNumber(String input) {
-        return input.chars().allMatch(Character::isDigit); //음수면 false
     }
 
     /**
