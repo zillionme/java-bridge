@@ -3,7 +3,6 @@ package bridge;
 import java.util.*;
 
 import static bridge.BridgeRule.*;
-import static bridge.Exception.ERROR_MESSAGE_INVALID_MOVE;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -43,10 +42,7 @@ public class BridgeGame {
     public boolean judgePlayerMoving(String playerMoving) {
         String bridgeMoving = bridge.get(pointer);
 
-        if(playerMoving.equals(bridgeMoving)){
-            return true;
-        }
-        return false;
+        return playerMoving.equals(bridgeMoving);
     }
 
     public void updatePlayerStatusMap(String playerMoving) {
@@ -83,4 +79,24 @@ public class BridgeGame {
     }
 
 
+    public String getPlayerStatusMap() {
+        String upBridgeStatus = getEachBridgeStatus(UP_BRIDGE_SYMBOL);
+        String downBridgeStatus = getEachBridgeStatus(DOWN_BRIDGE_SYMBOL);
+
+        return upBridgeStatus +"\n"+downBridgeStatus;
+    }
+
+    public String getEachBridgeStatus(String eachBridge) {
+        List<String> eachBridgeStatus = playerStatusMap.get(eachBridge);
+        return statusToString(eachBridgeStatus);
+    }
+
+    public String statusToString(List<String> eachBridgeStatus) {
+        StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
+
+        for(String step : eachBridgeStatus) {
+            sj.add(step);
+        }
+        return sj.toString();
+    }
 }
