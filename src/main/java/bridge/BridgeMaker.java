@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static bridge.BridgeRule.*;
-import static bridge.Exception.ERROR_MESSAGE_OUT_OF_RANGE;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -21,15 +20,19 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        validateBridgeSize(size);
+        Validator.validateBridgeSize(size);
         List<String> bridge = new ArrayList<>();
-        
+
         while (bridge.size() != size) {
-            int randomNumber = bridgeNumberGenerator.generate();
-            bridge.add(getSymbolByNumber(randomNumber));
+            addMovesToBridge(bridge);
         }
 
         return bridge;
+    }
+
+    public void addMovesToBridge(List<String> bridge) {
+        int randomNumber = bridgeNumberGenerator.generate();
+        bridge.add(getSymbolByNumber(randomNumber));
     }
 
     public String getSymbolByNumber(int number) {
@@ -39,9 +42,5 @@ public class BridgeMaker {
         return UP_BRIDGE_SYMBOL;
     }
 
-    public void validateBridgeSize(int size) {
-        if(BRIDGE_LENGTH_MAX < size || size < BRIDGE_LENGTH_MIN) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
-        }
-    }
+
 }
