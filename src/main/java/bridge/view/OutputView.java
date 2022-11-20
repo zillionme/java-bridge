@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.BridgeGame;
+import bridge.domain.BridgeGame;
 
 import static bridge.BridgeRule.RESULT_FAIL;
 import static bridge.BridgeRule.RESULT_SUCCESS;
@@ -12,8 +12,7 @@ public class OutputView {
     public static String MESSAGE_TO_OUTPUT_START = "다리 건너기 게임을 시작합니다.";
     public static String MESSAGE_TO_OUTPUT_FINAL_RESULT = "\n최종 게임 결과";
     public static String MESSAGE_TO_OUTPUT_RESULT_SUCCESS = "게임 성공 여부: ";
-    public static String MESSAGE_TO_OUTPUT_RESULT_TRYCOUNT = "총 시도한 횟수: ";
-
+    public static String MESSAGE_TO_OUTPUT_RESULT_TRY_COUNT = "총 시도한 횟수: ";
 
     public void printStart() {
         System.out.println(MESSAGE_TO_OUTPUT_START);
@@ -41,7 +40,7 @@ public class OutputView {
     }
 
     public void printTrtCount(BridgeGame bridgeGame) {
-        System.out.println(MESSAGE_TO_OUTPUT_RESULT_TRYCOUNT+ bridgeGame.getPlayerTryCount());
+        System.out.println(MESSAGE_TO_OUTPUT_RESULT_TRY_COUNT+ bridgeGame.getPlayerTryCount());
     }
 
     public void printError(String errorMessage) {
