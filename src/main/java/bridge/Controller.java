@@ -40,6 +40,7 @@ public class Controller {
     public void playBridgeGame(BridgeGame bridgeGame) {
         while (!bridgeGame.isCompletedOrStopped()) {
             String playerMoving = inputView.readMoving();
+            Validator.validateMovingInput(playerMoving);
             bridgeGame.move(playerMoving);
             outputView.printMap(bridgeGame);
 
@@ -48,7 +49,7 @@ public class Controller {
     }
 
     public void decideToKeepPlaying(BridgeGame bridgeGame) {
-        if(!bridgeGame.getMovingResultBoolean()) { //이동결과 실패하면, 명령 받기
+        if(player.isFailed()) { //이동결과 실패하면, 명령 받기
             String command = getCommand();
             executeCommand(bridgeGame, command);
         }
@@ -69,12 +70,6 @@ public class Controller {
         if(command.equals(COMMAND_QUIT)){
             bridgeGame.quit();
         }
-    }
-
-
-    //완전 성공한 경우 or 실패했지만 게임 그만둔 경우
-    public boolean isCompletedOrStopped(BridgeGame bridgeGame) {
-        return bridgeGame.isSuccessfullyCompleted() || !bridgeGame.isPlaying();
     }
 
 }
