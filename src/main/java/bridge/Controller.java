@@ -33,6 +33,32 @@ public class Controller {
         String playerMoving = inputView.readMoving();
         bridgeGame.move(playerMoving);
         outputView.printMap(bridgeGame);
+
+        decideToKeepPlaying(bridgeGame);
+    }
+
+    public void decideToKeepPlaying(BridgeGame bridgeGame) {
+        if(!bridgeGame.getMovingResultBoolean()) { //이동결과 실패하면, 명령 받기
+            String command = getCommand();
+            executeCommand(bridgeGame, command);
+        }
+    }
+
+    public String getCommand() {
+        String command = inputView.readGameCommand();
+        Validator.validateCommand(command);
+
+        return command;
+    }
+
+    public void executeCommand (BridgeGame bridgeGame, String command) {
+        if(command.equals(COMMAND_RETRY)){
+            bridgeGame.retry();
+        }
+
+        if(command.equals(COMMAND_QUIT)){
+            bridgeGame.quit();
+        }
     }
 
 }
