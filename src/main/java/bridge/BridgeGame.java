@@ -1,5 +1,7 @@
 package bridge;
 
+import bridge.domain.Player;
+
 import java.util.*;
 
 import static bridge.BridgeRule.*;
@@ -9,89 +11,25 @@ import static bridge.BridgeRule.*;
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private Map<String, List<String>> playerStatusMap;
-    private int pointer;
-    private boolean movingResult;
-    private int tryCount =1;
+    private Player player;
+    private boolean isPlaying; // 생성시 start()메서드로 감싸고, true로 초기화함
 
-    public BridgeGame(List<String> bridge) {
+
+    public BridgeGame(List<String> bridge, Player player) {
         this.bridge = bridge;
-        setDefaultPlayerStatus();
+        this.player = player;
+        this.isPlaying = true;
     }
 
-    public void setDefaultPlayerStatus() {
-        this.pointer = 0;
-        this.playerStatusMap = new HashMap<>();
-        playerStatusMap.put(DOWN_BRIDGE_SYMBOL, new ArrayList<>());
-        playerStatusMap.put(UP_BRIDGE_SYMBOL, new ArrayList<>());
-    }
 
+    public void judge(String playerMoving) {
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move(String playerMoving) {
-        Validator.validateMovingInput(playerMoving);
-
-        judgePlayerMoving(playerMoving);
-        updatePlayerStatusMap(playerMoving);
-
-        pointer++;
-    }
-
-    public void judgePlayerMoving(String playerMoving) {
-        String bridgeMoving = bridge.get(pointer);
-
-        movingResult = playerMoving.equals(bridgeMoving);
-    }
-
-    public void updatePlayerStatusMap(String playerMoving) {
-
-        for(String eachBridge : playerStatusMap.keySet()) {
-            addStatusToEachBridge(eachBridge, playerMoving);
-        }
-    }
-
-    public void addStatusToEachBridge(String eachBridge, String playerMoving) {
-        List<String> eachBridgeStatus = playerStatusMap.get(eachBridge);
-
-        if (playerMoving.equals(eachBridge)) {
-            eachBridgeStatus.add(pointer, getMovingResultSymbol());
-        }
-
-        eachBridgeStatus.add(pointer, " ");
-    }
-
-    public String getMovingResultSymbol() {
-        if(movingResult) {
-            return MOVABLE_SYMBOL;
-        }
-        return UNMOVABLE_SYMBOL;
-    }
-
-    /**
-     * 사용자의 이동결과 제공 메서드
-     */
-    public String getPlayerStatusMap() {
-        String upBridgeStatus = getEachBridgeStatus(UP_BRIDGE_SYMBOL);
-        String downBridgeStatus = getEachBridgeStatus(DOWN_BRIDGE_SYMBOL);
-
-        return upBridgeStatus +"\n"+downBridgeStatus;
-    }
-
-    public String getEachBridgeStatus(String eachBridge) {
-        List<String> eachBridgeStatus = playerStatusMap.get(eachBridge);
-        return statusToString(eachBridgeStatus);
-    }
-
-    public String statusToString(List<String> eachBridgeStatus) {
-        StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
-
-        for(String step : eachBridgeStatus) {
-            sj.add(step);
-        }
-        return sj.toString();
+    public void move() {
     }
 
     /**
@@ -100,19 +38,25 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry() {
-        setDefaultPlayerStatus();
-        tryCount++;
+    }
+
+
+
+    public boolean isSuccessfullyCompleted() {
+        return movingResult && pointer == bridge.size();
+    }
+    public void quit() {
+        isPlaying = false;
+    }
+    public boolean isPlaying() {
+        return isPlaying;
     }
 
     public boolean getMovingResultBoolean() {
         return movingResult;
     }
-
     public int getTryCount() {
         return tryCount;
     }
 
-    public boolean isSuccessfullyCompleted() {
-        return movingResult && pointer == bridge.size();
-    }
 }
