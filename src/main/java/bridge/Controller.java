@@ -12,12 +12,15 @@ public class Controller {
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
 
     public void generate() {
-        outputView.printStart();
-        BridgeGame bridgeGame = createBridgeGame();
+        try {
+            outputView.printStart();
 
-        //최종 결과가 false이고, 게임 중인 동안만
-        while (true) {
+            BridgeGame bridgeGame = createBridgeGame();
             playBridgeGame(bridgeGame);
+
+            outputView.printResult(bridgeGame);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
         }
 
     }
@@ -30,11 +33,13 @@ public class Controller {
     }
 
     public void playBridgeGame(BridgeGame bridgeGame) {
-        String playerMoving = inputView.readMoving();
-        bridgeGame.move(playerMoving);
-        outputView.printMap(bridgeGame);
+        while (!isCompletedOrStopped(bridgeGame)) {
+            String playerMoving = inputView.readMoving();
+            bridgeGame.move(playerMoving);
+            outputView.printMap(bridgeGame);
 
-        decideToKeepPlaying(bridgeGame);
+            decideToKeepPlaying(bridgeGame);
+        }
     }
 
     public void decideToKeepPlaying(BridgeGame bridgeGame) {
@@ -59,6 +64,12 @@ public class Controller {
         if(command.equals(COMMAND_QUIT)){
             bridgeGame.quit();
         }
+    }
+
+
+    //완전 성공한 경우 or 실패했지만 게임 그만둔 경우
+    public boolean isCompletedOrStopped(BridgeGame bridgeGame) {
+        return bridgeGame.isSuccessfullyCompleted() || !bridgeGame.isPlaying();
     }
 
 }
