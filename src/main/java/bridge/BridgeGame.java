@@ -108,4 +108,7 @@ public class BridgeGame {
         return movingResult;
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
 }
