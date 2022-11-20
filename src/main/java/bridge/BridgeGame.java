@@ -12,6 +12,7 @@ public class BridgeGame {
     private Map<String, List<String>> playerStatusMap;
     private int pointer;
     private boolean movingResult;
+    private int tryCount =1;
 
     public BridgeGame(List<String> bridge) {
         this.bridge = bridge;
@@ -39,10 +40,10 @@ public class BridgeGame {
         pointer++;
     }
 
-    public boolean judgePlayerMoving(String playerMoving) {
+    public void judgePlayerMoving(String playerMoving) {
         String bridgeMoving = bridge.get(pointer);
 
-        return playerMoving.equals(bridgeMoving);
+        movingResult = playerMoving.equals(bridgeMoving);
     }
 
     public void updatePlayerStatusMap(String playerMoving) {
@@ -69,16 +70,9 @@ public class BridgeGame {
         return UNMOVABLE_SYMBOL;
     }
 
-
     /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     * <p>
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 사용자의 이동결과 제공 메서드
      */
-    public void retry() {
-    }
-
-
     public String getPlayerStatusMap() {
         String upBridgeStatus = getEachBridgeStatus(UP_BRIDGE_SYMBOL);
         String downBridgeStatus = getEachBridgeStatus(DOWN_BRIDGE_SYMBOL);
@@ -99,4 +93,19 @@ public class BridgeGame {
         }
         return sj.toString();
     }
+
+    /**
+     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
+     * <p>
+     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     */
+    public void retry() {
+        setDefaultPlayerStatus();
+        tryCount++;
+    }
+
+    public boolean getMovingResultBoolean() {
+        return movingResult;
+    }
+
 }
