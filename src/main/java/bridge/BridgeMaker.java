@@ -1,6 +1,9 @@
 package bridge;
 
+import bridge.domain.Bridge;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static bridge.BridgeRule.*;
@@ -35,10 +38,11 @@ public class BridgeMaker {
     }
 
     public String getSymbolByNumber(int number) {
-        if (number == DOWN_BRIDGE_NUMBER) {
-            return DOWN_BRIDGE_SYMBOL;
-        }
-        return UP_BRIDGE_SYMBOL;
+        
+        return Arrays.stream(Bridge.values())
+                .filter(bridge -> bridge.getMappingNumber() == number)
+                .findFirst()
+                .get().getSymbol();
     }
 
 
