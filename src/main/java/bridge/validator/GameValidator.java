@@ -1,7 +1,13 @@
 package bridge.validator;
 
-import static bridge.BridgeRule.*;
-import static bridge.BridgeRule.UP_BRIDGE_SYMBOL;
+import bridge.domain.Bridge;
+
+import java.util.Arrays;
+
+import static bridge.BridgeRule.BRIDGE_LENGTH_MAX;
+import static bridge.BridgeRule.BRIDGE_LENGTH_MIN;
+import static bridge.BridgeRule.COMMAND_QUIT;
+import static bridge.BridgeRule.COMMAND_RETRY;
 import static bridge.Exception.ERROR_MESSAGE_INVALID_MOVE;
 import static bridge.Exception.ERROR_MESSAGE_OUT_OF_RANGE;
 
@@ -13,9 +19,11 @@ public class GameValidator {
     }
 
     public static void validateMovingInput (String input) {
-        if(!input.equals(DOWN_BRIDGE_SYMBOL) && !input.equals(UP_BRIDGE_SYMBOL)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE);
-        }
+        Arrays.stream(Bridge.values())
+                .filter(bridge -> input.equals(bridge.getSymbol()))
+                .findAny()
+                .orElseThrow(()->new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE));
+
     }
 
     public static void validateCommand(String input) {
