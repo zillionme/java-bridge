@@ -38,7 +38,7 @@ public class Controller {
     }
 
     public void playBridgeGame(BridgeGame bridgeGame) {
-        while (!isCompletedOrStopped(bridgeGame)) {
+        while (!bridgeGame.isCompletedOrStopped()) {
             String playerMoving = inputView.readMoving();
             bridgeGame.move(playerMoving);
             outputView.printMap(bridgeGame);
