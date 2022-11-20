@@ -3,7 +3,7 @@ package bridge.domain;
 import java.util.List;
 
 public class Player {
-    private PlayerStatus playerStatus = new PlayerStatus();
+    private final PlayerStatus playerStatus = new PlayerStatus();
     private boolean movingResult;
     private int location;
     private int tryCount = 1;
@@ -17,6 +17,11 @@ public class Player {
         playerStatus.setDefault();
     }
 
+    public boolean compare(String playerMoving, List<String> bridge) {
+        String bridgeMoving = bridge.get(location);
+        return playerMoving.equals(bridgeMoving);
+    }
+
     public void updatePlayerStatus(boolean movingResult, String playerMoving) {
         this.movingResult = movingResult;
         playerStatus.update(movingResult, location, playerMoving);
@@ -28,13 +33,9 @@ public class Player {
         tryCount++;
     }
 
+    //플레이어의 게임 결과
     public boolean isArrived(int bridgeSize) {
         return movingResult && location == bridgeSize;
-    }
-
-    public boolean compare(String playerMoving, List<String> bridge) {
-        String bridgeMoving = bridge.get(location);
-        return playerMoving.equals(bridgeMoving);
     }
 
     public boolean isFailed() {
@@ -42,11 +43,13 @@ public class Player {
     }
 
 
+    //플레이어 필드 getter
+    public String getPlayerStatus() {
+        return playerStatus.toString();
+    }
+
     public int getTryCount() {
         return tryCount;
     }
 
-    public String getPlayerStatus() {
-        return playerStatus.toString();
-    }
 }
