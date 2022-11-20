@@ -36,4 +36,17 @@ public class Player {
         String bridgeMoving = bridge.get(location);
         return playerMoving.equals(bridgeMoving);
     }
+
+    public boolean isFailed() {
+        return !movingResult;
+    }
+
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public String getPlayerStatus() {
+        return playerStatus.toString();
+    }
 }
