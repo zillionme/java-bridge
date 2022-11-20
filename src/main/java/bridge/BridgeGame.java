@@ -37,13 +37,15 @@ public class BridgeGame {
     }
 
     // 게임 결과 (enum으로 처리가능) / movingResult도 저장할 수 있으면 좋을듯 하다.
+    public boolean isSuccessfullyCompleted(){
+        return player.isArrived(bridge.size());
+    }
     public boolean isCompletedOrStopped() {
-        return player.isArrived(bridge.size()) || !isPlaying;
+        return isSuccessfullyCompleted() || !isPlaying;
     }
 
     public String getPlayerStatus() {
         return player.getPlayerStatus();
     }
-
 
 }
