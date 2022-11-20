@@ -2,11 +2,13 @@ package bridge;
 
 import java.util.List;
 
+import static bridge.BridgeRule.*;
+import static bridge.Exception.ERROR_MESSAGE_OUT_OF_RANGE;
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
 public class BridgeMaker {
-
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -19,5 +21,11 @@ public class BridgeMaker {
      */
     public List<String> makeBridge(int size) {
         return null;
+    }
+
+    public void validateBridgeSize(int size) {
+        if(BRIDGE_LENGTH_MAX < size || size < BRIDGE_LENGTH_MIN) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
+        }
     }
 }
