@@ -39,13 +39,18 @@ public class Controller {
 
     public void playBridgeGame(BridgeGame bridgeGame) {
         while (!bridgeGame.isCompletedOrStopped()) {
-            String playerMoving = inputView.readMoving();
-            Validator.validateMovingInput(playerMoving);
-            bridgeGame.move(playerMoving);
+            moveByInput(bridgeGame);
             outputView.printMap(bridgeGame);
 
             decideToKeepPlaying(bridgeGame);
         }
+    }
+
+    public void moveByInput(BridgeGame bridgeGame) {
+        String playerMoving = inputView.readMoving();
+        Validator.validateMovingInput(playerMoving);
+
+        bridgeGame.move(playerMoving);
     }
 
     public void decideToKeepPlaying(BridgeGame bridgeGame) {
