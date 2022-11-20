@@ -21,15 +21,21 @@ public class BridgeGame {
         this.isPlaying = true;
     }
 
+    //Movingresult를 게임 클래스로? isMovable로 변경??
+    public boolean judge(String playerMoving) {
+        int location = player.getLocation();
+        String bridgeMoving = bridge.get(location);
 
-    public void judge(String playerMoving) {
+        return playerMoving.equals(bridgeMoving);
     }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void move() {
+    public void move(String playerMoving) {
+        boolean movingResult = judge(playerMoving);
+        player.updatePlayerStatus(movingResult, playerMoving);
     }
 
     /**
@@ -40,23 +46,5 @@ public class BridgeGame {
     public void retry() {
     }
 
-
-
-    public boolean isSuccessfullyCompleted() {
-        return movingResult && pointer == bridge.size();
-    }
-    public void quit() {
-        isPlaying = false;
-    }
-    public boolean isPlaying() {
-        return isPlaying;
-    }
-
-    public boolean getMovingResultBoolean() {
-        return movingResult;
-    }
-    public int getTryCount() {
-        return tryCount;
-    }
 
 }
