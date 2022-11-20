@@ -111,4 +111,8 @@ public class BridgeGame {
     public int getTryCount() {
         return tryCount;
     }
+
+    public boolean isSuccessfullyCompleted() {
+        return movingResult && pointer == bridge.size();
+    }
 }
