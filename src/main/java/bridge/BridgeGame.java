@@ -2,16 +2,14 @@ package bridge;
 
 import bridge.domain.Player;
 
-import java.util.*;
-
-import static bridge.BridgeRule.*;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
     private final List<String> bridge;
-    private Player player;
+    private final Player player;
     private boolean isPlaying; // 생성시 start()메서드로 감싸고, true로 초기화함
 
 
@@ -40,6 +38,11 @@ public class BridgeGame {
 
     public void quit() {
         isPlaying = false;
+    }
+
+    // 게임 결과
+    public boolean isCompletedOrStopped() {
+        return player.isArrived(bridge.size()) || !isPlaying;
     }
 
 }
