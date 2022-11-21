@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import java.util.Arrays;
+
 public enum Bridge {
     UP_BRIDGE("U",1),
     DOWN_BRIDGE("D",0);
@@ -12,15 +14,18 @@ public enum Bridge {
         this.mappingNumber = mappingNumber;
     }
 
-    public boolean isSymbolEqualTo(String input) {
-        return this.symbol.equals(input);
-    }
-
     public String getSymbol() {
         return symbol;
     }
 
     public int getMappingNumber() {
         return mappingNumber;
+    }
+
+    public static String getSymbolBy(int number) {
+        return Arrays.stream(Bridge.values())
+                .filter(bridge -> bridge.getMappingNumber() == number)
+                .findFirst()
+                .get().getSymbol();
     }
 }
