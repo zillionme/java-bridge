@@ -2,10 +2,10 @@ package bridge.util.validation;
 
 import bridge.domain.Bridge;
 
-import static bridge.util.BridgeRule.BRIDGE_LENGTH_MAX;
-import static bridge.util.BridgeRule.BRIDGE_LENGTH_MIN;
-import static bridge.util.BridgeRule.COMMAND_QUIT;
-import static bridge.util.BridgeRule.COMMAND_RETRY;
+import static bridge.util.GameRule.BRIDGE_LENGTH_MAX;
+import static bridge.util.GameRule.BRIDGE_LENGTH_MIN;
+import static bridge.util.GameRule.COMMAND_QUIT;
+import static bridge.util.GameRule.COMMAND_RETRY;
 
 public class GameValidator {
     public static void validateBridgeSize(int size) {
