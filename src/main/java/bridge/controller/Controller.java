@@ -21,15 +21,13 @@ public class Controller {
     public void generate() {
         try {
             outputView.printStart();
-
             BridgeGame bridgeGame = createBridgeGame();
             playBridgeGame(bridgeGame);
-
             outputView.printResult(bridgeGame);
+
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
-
     }
 
     public BridgeGame createBridgeGame() {
@@ -51,21 +49,13 @@ public class Controller {
 
     public void moveByInput(BridgeGame bridgeGame) {
         String playerMoving = inputView.readMoving();
-        GameValidator.validateMovingInput(playerMoving);
 
         bridgeGame.move(playerMoving);
     }
 
-    public String getCommand() {
-        String command = inputView.readGameCommand();
-        GameValidator.validateCommand(command);
-
-        return command;
-    }
-
     public void decideToKeepPlaying(BridgeGame bridgeGame) {
         if (player.isFailed()) { //이동결과 실패하면, 명령 받기
-            String command = getCommand();
+            String command = inputView.readGameCommand();
             bridgeGame.executeCommand(command);
         }
     }
