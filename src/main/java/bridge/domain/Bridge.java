@@ -2,7 +2,7 @@ package bridge.domain;
 
 import java.util.Arrays;
 
-import static bridge.util.validation.Exception.ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER;
+import static bridge.util.constants.Exception.ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER;
 
 public enum Bridge {
     UP_BRIDGE("U", 1),
