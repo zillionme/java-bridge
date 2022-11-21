@@ -3,11 +3,6 @@ package bridge.view;
 import bridge.domain.BridgeGame;
 import bridge.domain.GameResult;
 
-import java.util.Arrays;
-
-//import static bridge.BridgeRule.RESULT_FAIL;
-//import static bridge.BridgeRule.RESULT_SUCCESS;
-
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -35,15 +30,9 @@ public class OutputView {
     }
 
     public void printSuccessOrFail(BridgeGame bridgeGame) {
-        String gameResult = Arrays.stream(GameResult.values())
-                .filter(result -> result.isEqualTo(bridgeGame.isSuccessfullyCompleted()))
-                .findFirst().get().getKorean();
+        String gameResult = GameResult.getGameResultBy(bridgeGame.isSuccessfullyCompleted());
         System.out.println(MESSAGE_TO_OUTPUT_RESULT_SUCCESS + gameResult);
-//        if (bridgeGame.isSuccessfullyCompleted()) {
-//            System.out.println(MESSAGE_TO_OUTPUT_RESULT_SUCCESS + RESULT_SUCCESS);
-//            return;
-//        }
-//        System.out.println(MESSAGE_TO_OUTPUT_RESULT_SUCCESS + RESULT_FAIL);
+
     }
 
     public void printTrtCount(BridgeGame bridgeGame) {
