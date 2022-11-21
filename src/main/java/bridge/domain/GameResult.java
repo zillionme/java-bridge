@@ -24,4 +24,14 @@ public enum GameResult {
         return gameResult;
     }
 
+    public static String getMovingResultBy (boolean isMovable) {
+        return Arrays.stream(GameResult.values())
+                .filter(result -> result.isEqualTo(isMovable))
+                .findFirst().get().getMovingResult();
+    }
+
+    public boolean isEqualTo(boolean inputValue) {
+        return this.value == inputValue;
+    }
+
 }
