@@ -19,14 +19,13 @@ public class BridgeGame {
         this.isPlaying = true;
     }
 
-
     public boolean judge(String playerMoving) {
         return player.compare(playerMoving, bridge);
     }
 
     public void move(String playerMoving) {
-        boolean movingResult = judge(playerMoving);
-        player.updatePlayerStatus(movingResult, playerMoving);
+        boolean isMovable = judge(playerMoving);
+        player.updatePlayerStatus(isMovable, playerMoving);
     }
 
     public void retry() {
@@ -55,6 +54,7 @@ public class BridgeGame {
         return isSuccessfullyCompleted() || !isPlaying;
     }
 
+    // 플레이어 정보 getter
     public String getPlayerStatus() {
         return player.getPlayerStatus();
     }

@@ -22,9 +22,9 @@ public class Player {
         return playerMoving.equals(bridgeMoving);
     }
 
-    public void updatePlayerStatus(boolean movingResult, String playerMoving) {
-        this.movingResult = movingResult;
-        playerStatus.update(movingResult, location, playerMoving);
+    public void updatePlayerStatus(boolean isMovable, String playerMoving) {
+        this.movingResult = isMovable;
+        playerStatus.update(isMovable, location, playerMoving);
         location++;
     }
 
