@@ -30,6 +30,12 @@ public enum GameResult {
                 .findFirst().get().getMovingResult();
     }
 
+    public static String getGameResultBy(boolean isSucceeded) {
+        return Arrays.stream(GameResult.values())
+                .filter(result -> result.isEqualTo(isSucceeded))
+                .findAny().get().getGameResult();
+    }
+
     public boolean isEqualTo(boolean inputValue) {
         return this.value == inputValue;
     }
