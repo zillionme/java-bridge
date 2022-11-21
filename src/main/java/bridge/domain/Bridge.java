@@ -2,6 +2,8 @@ package bridge.domain;
 
 import java.util.Arrays;
 
+import static bridge.util.validation.Exception.ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER;
+
 public enum Bridge {
     UP_BRIDGE("U", 1),
     DOWN_BRIDGE("D", 0);
@@ -18,7 +20,8 @@ public enum Bridge {
         return Arrays.stream(Bridge.values())
                 .filter(bridge -> bridge.getMappingNumber() == number)
                 .findFirst()
-                .get().getSymbol();
+                .orElseThrow(()-> new IllegalArgumentException(ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER))
+                .getSymbol();
     }
 
     public String getSymbol() {
