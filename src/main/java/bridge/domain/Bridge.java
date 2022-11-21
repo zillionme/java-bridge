@@ -12,8 +12,12 @@ public enum Bridge {
         this.mappingNumber = mappingNumber;
     }
 
+    public boolean isSymbolEqualTo(String input) {
+        return this.symbol.equals(input);
+    }
+
     public String getSymbol() {
-        return this.symbol;
+        return symbol;
     }
 
     public int getMappingNumber() {
