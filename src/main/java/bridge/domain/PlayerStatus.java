@@ -2,8 +2,8 @@ package bridge.domain;
 
 import java.util.*;
 
-import static bridge.BridgeRule.MOVABLE_SYMBOL;
-import static bridge.BridgeRule.UNMOVABLE_SYMBOL;
+//import static bridge.BridgeRule.MOVABLE_SYMBOL;
+//import static bridge.BridgeRule.UNMOVABLE_SYMBOL;
 
 
 public class PlayerStatus {
@@ -42,10 +42,14 @@ public class PlayerStatus {
     }
 
     public String getMovingResultSymbol(boolean movingResult) {
-        if (movingResult) {
-            return MOVABLE_SYMBOL;
-        }
-        return UNMOVABLE_SYMBOL;
+        return Arrays.stream(GameResult.values())
+                .filter(result -> result.isEqualTo(movingResult))
+                .findFirst().get().getSymbol();
+
+//        if (movingResult) {
+//            return MOVABLE_SYMBOL;
+//        }
+//        return UNMOVABLE_SYMBOL;
     }
 
     /**
