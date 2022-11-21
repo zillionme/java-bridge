@@ -1,28 +1,27 @@
 package bridge.domain;
 
+import java.util.Arrays;
+
 public enum GameResult {
     SUCCESS(true,"O","성공"),
     FAIL(false,"X","실패");
 
     private final boolean value;
-    private final String symbol;
-    private final String korean;
+    private final String movingResult;
+    private final String gameResult;
 
-    GameResult(boolean value, String symbol, String korean) {
+    GameResult(boolean value, String movingResult, String gameResult) {
         this.value = value;
-        this.symbol = symbol;
-        this.korean = korean;
+        this.movingResult = movingResult;
+        this.gameResult = gameResult;
     }
 
-    public boolean isEqualTo(boolean movingResult) {
-        return this.value == movingResult;
+    public String getMovingResult() {
+        return movingResult;
     }
 
-    public String getSymbol() {
-        return symbol;
+    public String getGameResult() {
+        return gameResult;
     }
 
-    public String getKorean() {
-        return korean;
-    }
 }
