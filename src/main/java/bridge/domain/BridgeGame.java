@@ -47,6 +47,9 @@ public class BridgeGame {
     }
 
     // 게임 결과
+    public String getGameResult() {
+        return GameResult.getGameResultBy(isSuccessfullyCompleted());
+    }
     public boolean isSuccessfullyCompleted() {
         return player.isArrived(bridge.size());
     }
