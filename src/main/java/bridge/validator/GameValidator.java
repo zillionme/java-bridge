@@ -20,7 +20,7 @@ public class GameValidator {
 
     public static void validateMovingInput (String input) {
         Arrays.stream(Bridge.values())
-                .filter(bridge -> input.equals(bridge.getSymbol()))
+                .filter(bridge-> bridge.isSymbolEqualTo(input))
                 .findAny()
                 .orElseThrow(()->new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE));
 
