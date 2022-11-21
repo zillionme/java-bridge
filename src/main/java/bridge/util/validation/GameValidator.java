@@ -1,6 +1,7 @@
 package bridge.util.validation;
 
 import bridge.domain.Bridge;
+import java.util.List;
 
 import static bridge.util.GameRule.BRIDGE_LENGTH_MAX;
 import static bridge.util.GameRule.BRIDGE_LENGTH_MIN;
@@ -27,6 +28,12 @@ public class GameValidator {
     public static void validateCommand(String input) {
         if (!input.equals(COMMAND_RETRY) && !input.equals(COMMAND_QUIT)) {
             throw new IllegalArgumentException(Exception.ERROR_MESSAGE_INVALID_COMMAND);
+        }
+    }
+
+    public static void validatePlayerLocation(int location, List<String> bridge) {
+        if(location == bridge.size()) {
+            throw new IllegalArgumentException(Exception.ERROR_MESSAGE_OUT_RANGE_OF_BRIDGE);
         }
     }
 }
