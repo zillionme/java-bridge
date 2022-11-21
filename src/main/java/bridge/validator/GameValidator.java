@@ -20,10 +20,17 @@ public class GameValidator {
     }
 
     public static void validateMovingInput (String input) {
-        Arrays.stream(Bridge.values())
-                .filter(bridge-> bridge.isSymbolEqualTo(input))
-                .findAny()
-                .orElseThrow(()->new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE));
+//        Arrays.stream(Bridge.values())
+//                .filter(bridge-> bridge.isSymbolEqualTo(input))
+//                .findAny()
+//                .orElseThrow(()->new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE));
+        for(Bridge bridge : Bridge.values()) {
+            if(bridge.isSymbolEqualTo(input)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE);
+
 
     }
 
