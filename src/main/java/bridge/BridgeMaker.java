@@ -3,10 +3,7 @@ package bridge;
 import bridge.domain.Bridge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import bridge.domain.Bridge;
-import static bridge.BridgeRule.*;
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -38,21 +35,7 @@ public class BridgeMaker {
     }
 
     public String getSymbolByNumber(int number) {
-//        return Arrays.stream(Bridge.values())
-//                .filter(bridge -> bridge.getMappingNumber() == number)
-//                .findFirst()
-//                .get().getSymbol();
-
-        if (number == Bridge.DOWN_BRIDGE.getMappingNumber()) {
-            return Bridge.DOWN_BRIDGE.getSymbol();
-        }
-        return Bridge.UP_BRIDGE.getSymbol();
+        return Bridge.getSymbolBy(number);
     }
-
-    //        if (number == DOWN_BRIDGE_NUMBER) {
-    //            return DOWN_BRIDGE_SYMBOL;
-    //        }
-    //        return UP_BRIDGE_SYMBOL;
-
 
 }
