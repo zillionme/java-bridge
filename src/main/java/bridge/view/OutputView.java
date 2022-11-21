@@ -6,10 +6,11 @@ import bridge.domain.BridgeGame;
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    public static String MESSAGE_TO_OUTPUT_START = "다리 건너기 게임을 시작합니다.";
-    public static String MESSAGE_TO_OUTPUT_FINAL_RESULT = "\n최종 게임 결과";
-    public static String MESSAGE_TO_OUTPUT_RESULT_SUCCESS = "게임 성공 여부: ";
-    public static String MESSAGE_TO_OUTPUT_RESULT_TRY_COUNT = "총 시도한 횟수: ";
+    private static final String MESSAGE_TO_OUTPUT_START = "다리 건너기 게임을 시작합니다.";
+    private static final String MESSAGE_TO_OUTPUT_FINAL_RESULT = "\n최종 게임 결과";
+    private static final String MESSAGE_TO_OUTPUT_RESULT_SUCCESS = "게임 성공 여부: ";
+    private static final String MESSAGE_TO_OUTPUT_RESULT_TRY_COUNT = "총 시도한 횟수: ";
+    private static final String ERROR_MESSAGE_STARTER ="[ERROR] ";
 
     public void printStart() {
         System.out.println(MESSAGE_TO_OUTPUT_START);
@@ -38,7 +39,7 @@ public class OutputView {
     }
 
     public void printError(String errorMessage) {
-        System.out.println(errorMessage);
+        System.out.println(ERROR_MESSAGE_STARTER+errorMessage);
     }
 
 }
