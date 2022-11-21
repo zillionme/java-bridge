@@ -25,7 +25,9 @@ public class InputView {
 
     //서비스로직
     public int castToInt(String input) {
+        ViewValidator.isNotEmptyOrNull(input);
         ViewValidator.isNumber(input);
+
         return Integer.parseInt(input);
     }
 
@@ -34,8 +36,10 @@ public class InputView {
      */
     public String readMoving() {
         System.out.println(MESSAGE_TO_INPUT_STEP);
+        String input = Console.readLine().trim();
+        ViewValidator.isNotEmptyOrNull(input);
 
-        return Console.readLine().trim();
+        return input;
     }
 
     /**
@@ -43,7 +47,9 @@ public class InputView {
      */
     public String readGameCommand() {
         System.out.println(MESSAGE_TO_INPUT_COMMAND);
+        String input = Console.readLine().trim();
+        ViewValidator.isNotEmptyOrNull(input);
 
-        return Console.readLine().trim();
+        return input;
     }
 }
