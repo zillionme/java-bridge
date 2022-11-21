@@ -18,25 +18,25 @@ public class PlayerStatus {
     }
 
     /** update player's status */
-    public void update(boolean isMovable, int location, String playerMoving) {
+    public void update(boolean isMovable, String playerMoving) {
         this.movingResultSymbol = GameResult.getMovingResultBy(isMovable);
-        updatePlayerStatusMap(location, playerMoving);
+        updatePlayerStatusMap(playerMoving);
     }
 
-    public void updatePlayerStatusMap(int location, String playerMoving) {
+    public void updatePlayerStatusMap(String playerMoving) {
         for (Bridge eachBridge : playerStatusMap.keySet()) {
-            addStatusToEachBridge(eachBridge, location, playerMoving);
+            addStatusToEachBridge(eachBridge, playerMoving);
         }
     }
 
-    public void addStatusToEachBridge(Bridge eachBridge, int location, String playerMoving) {
+    public void addStatusToEachBridge(Bridge eachBridge, String playerMoving) {
         List<String> eachBridgeStatus = playerStatusMap.get(eachBridge);
 
         if (playerMoving.equals(eachBridge.getSymbol())) {
-            eachBridgeStatus.add(location, movingResultSymbol);
+            eachBridgeStatus.add(movingResultSymbol);
             return;
         }
-        eachBridgeStatus.add(location, " ");
+        eachBridgeStatus.add(" ");
     }
 
     /** toString */
