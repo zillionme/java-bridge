@@ -2,8 +2,6 @@ package bridge.validator;
 
 import bridge.domain.Bridge;
 
-import java.util.Arrays;
-
 import static bridge.BridgeRule.BRIDGE_LENGTH_MAX;
 import static bridge.BridgeRule.BRIDGE_LENGTH_MIN;
 import static bridge.BridgeRule.COMMAND_QUIT;
@@ -20,12 +18,8 @@ public class GameValidator {
     }
 
     public static void validateMovingInput (String input) {
-//        Arrays.stream(Bridge.values())
-//                .filter(bridge-> bridge.isSymbolEqualTo(input))
-//                .findAny()
-//                .orElseThrow(()->new IllegalArgumentException(ERROR_MESSAGE_INVALID_MOVE));
         for(Bridge bridge : Bridge.values()) {
-            if(bridge.isSymbolEqualTo(input)) {
+            if(input.equals(bridge.getSymbol())) {
                 return;
             }
         }
