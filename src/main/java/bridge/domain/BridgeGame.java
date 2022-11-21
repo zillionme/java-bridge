@@ -40,6 +40,8 @@ public class BridgeGame {
     }
 
     public void executeCommand(String command) {
+        GameValidator.validateCommand(command);
+
         if (command.equals(COMMAND_RETRY)) {
             retry();
         }
