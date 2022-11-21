@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.util.validation.GameValidator;
+
 import java.util.List;
 
 public class Player {
@@ -17,14 +19,15 @@ public class Player {
         playerStatus.setDefault();
     }
 
-    public boolean compare(String playerMoving, List<String> bridge) {
+    public boolean isMovableBy(String playerMoving, List<String> bridge) {
+        GameValidator.validatePlayerLocation(location, bridge);
         String bridgeMoving = bridge.get(location);
         return playerMoving.equals(bridgeMoving);
     }
 
     public void updatePlayerStatus(boolean isMovable, String playerMoving) {
         this.movingResult = isMovable;
-        playerStatus.update(isMovable, location, playerMoving);
+        playerStatus.update(isMovable, playerMoving);
         location++;
     }
 
