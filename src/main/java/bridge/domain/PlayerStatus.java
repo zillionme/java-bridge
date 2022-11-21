@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.util.GameResult;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

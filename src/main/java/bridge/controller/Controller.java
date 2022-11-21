@@ -5,7 +5,7 @@ import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
-import bridge.validator.GameValidator;
+import bridge.util.validation.GameValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 

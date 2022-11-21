@@ -2,8 +2,8 @@ package bridge.domain;
 
 import java.util.List;
 
-import static bridge.BridgeRule.COMMAND_QUIT;
-import static bridge.BridgeRule.COMMAND_RETRY;
+import static bridge.util.BridgeRule.COMMAND_QUIT;
+import static bridge.util.BridgeRule.COMMAND_RETRY;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
