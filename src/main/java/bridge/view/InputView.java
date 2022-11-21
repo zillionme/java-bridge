@@ -4,7 +4,7 @@ import bridge.validator.ViewValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
- * 사용자로부터 입력을 받는 역할을 한다. 숫자 아니면 예외발생
+ * 사용자로부터 입력을 받는 역할을 한다.
  */
 public class InputView {
     public static String MESSAGE_TO_INPUT_BRIDGE_LENGTH = "\n다리 길이를 입력해주세요.";

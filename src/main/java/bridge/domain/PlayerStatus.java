@@ -1,10 +1,10 @@
 package bridge.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class PlayerStatus {
@@ -17,9 +17,7 @@ public class PlayerStatus {
                 .forEach(bridge -> playerStatusMap.put(bridge, new ArrayList<>()));
     }
 
-    /**
-     * update player's status
-     */
+    /** update player's status */
     public void update(boolean isMovable, int location, String playerMoving) {
         this.movingResultSymbol = GameResult.getMovingResultBy(isMovable);
         updatePlayerStatusMap(location, playerMoving);
@@ -41,9 +39,7 @@ public class PlayerStatus {
         eachBridgeStatus.add(location, " ");
     }
 
-    /**
-     * toString
-     */
+    /** toString */
     @Override
     public String toString() {
         return String.join("\n", getPlayerStatus());

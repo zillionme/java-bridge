@@ -3,8 +3,8 @@ package bridge.domain;
 import java.util.Arrays;
 
 public enum GameResult {
-    SUCCESS(true,"O","성공"),
-    FAIL(false,"X","실패");
+    SUCCESS(true, "O", "성공"),
+    FAIL(false, "X", "실패");
 
     private final boolean value;
     private final String movingResult;
@@ -16,15 +16,7 @@ public enum GameResult {
         this.gameResult = gameResult;
     }
 
-    public String getMovingResult() {
-        return movingResult;
-    }
-
-    public String getGameResult() {
-        return gameResult;
-    }
-
-    public static String getMovingResultBy (boolean isMovable) {
+    public static String getMovingResultBy(boolean isMovable) {
         return Arrays.stream(GameResult.values())
                 .filter(result -> result.isEqualTo(isMovable))
                 .findFirst().get().getMovingResult();
@@ -38,6 +30,14 @@ public enum GameResult {
 
     public boolean isEqualTo(boolean inputValue) {
         return this.value == inputValue;
+    }
+
+    public String getMovingResult() {
+        return movingResult;
+    }
+
+    public String getGameResult() {
+        return gameResult;
     }
 
 }

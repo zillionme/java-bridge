@@ -37,19 +37,20 @@ public class BridgeGame {
     }
 
     public void executeCommand(String command) {
-        if(command.equals(COMMAND_RETRY)){
+        if (command.equals(COMMAND_RETRY)) {
             retry();
         }
 
-        if(command.equals(COMMAND_QUIT)){
+        if (command.equals(COMMAND_QUIT)) {
             quit();
         }
     }
 
     // 게임 결과
-    public boolean isSuccessfullyCompleted(){
+    public boolean isSuccessfullyCompleted() {
         return player.isArrived(bridge.size());
     }
+
     public boolean isCompletedOrStopped() {
         return isSuccessfullyCompleted() || !isPlaying;
     }

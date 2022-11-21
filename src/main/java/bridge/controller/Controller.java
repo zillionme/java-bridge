@@ -3,9 +3,9 @@ package bridge.controller;
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
-import bridge.validator.GameValidator;
 import bridge.domain.BridgeGame;
 import bridge.domain.Player;
+import bridge.validator.GameValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -37,7 +37,7 @@ public class Controller {
         GameValidator.validateBridgeSize(size);
         List<String> bridge = bridgeMaker.makeBridge(size);
 
-        return new BridgeGame(bridge,player);
+        return new BridgeGame(bridge, player);
     }
 
     public void playBridgeGame(BridgeGame bridgeGame) {
@@ -56,18 +56,18 @@ public class Controller {
         bridgeGame.move(playerMoving);
     }
 
-    public void decideToKeepPlaying(BridgeGame bridgeGame) {
-        if(player.isFailed()) { //이동결과 실패하면, 명령 받기
-            String command = getCommand();
-            bridgeGame.executeCommand(command);
-        }
-    }
-
     public String getCommand() {
         String command = inputView.readGameCommand();
         GameValidator.validateCommand(command);
 
         return command;
+    }
+
+    public void decideToKeepPlaying(BridgeGame bridgeGame) {
+        if (player.isFailed()) { //이동결과 실패하면, 명령 받기
+            String command = getCommand();
+            bridgeGame.executeCommand(command);
+        }
     }
 
 }
