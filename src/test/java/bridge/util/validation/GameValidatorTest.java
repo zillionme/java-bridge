@@ -24,4 +24,12 @@ class GameValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("명령이 게임룰 상수에 없으면, 예외 발생 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"K","q","Quit","Restart"})
+    void validateCommandErrorTest(String input) {
+        assertThatThrownBy(()->GameValidator.validateCommand(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
