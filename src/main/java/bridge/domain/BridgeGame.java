@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.util.validation.GameValidator;
+
 import java.util.List;
 
 import static bridge.util.GameRule.COMMAND_QUIT;
@@ -20,6 +22,7 @@ public class BridgeGame {
     }
 
     public boolean judge(String playerMoving) {
+        GameValidator.validateMovingInput(playerMoving);
         return player.compare(playerMoving, bridge);
     }
 
