@@ -1,8 +1,7 @@
 package bridge.view;
 
+import bridge.validator.ViewValidator;
 import camp.nextstep.edu.missionutils.Console;
-
-import static bridge.Exception.ERROR_MESSAGE_FOR_NOT_NUMBER;
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다. 숫자 아니면 예외발생
@@ -26,10 +25,8 @@ public class InputView {
 
     //서비스로직
     public int castToInt(String input) {
-        if(ViewValidator.isNumber(input)) {
-            return Integer.parseInt(input);
-        }
-        throw new IllegalArgumentException(ERROR_MESSAGE_FOR_NOT_NUMBER);
+        ViewValidator.isNumber(input);
+        return Integer.parseInt(input);
     }
 
     /**
