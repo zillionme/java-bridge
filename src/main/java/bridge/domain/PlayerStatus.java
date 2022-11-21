@@ -1,10 +1,11 @@
 package bridge.domain;
 
-import java.util.*;
-
-//import static bridge.BridgeRule.MOVABLE_SYMBOL;
-//import static bridge.BridgeRule.UNMOVABLE_SYMBOL;
-
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Arrays;
+import java.util.StringJoiner;
 
 public class PlayerStatus {
     private String movingResultSymbol;
@@ -12,16 +13,15 @@ public class PlayerStatus {
 
     public void setDefault() {
         this.playerStatusMap = new HashMap<>();
-        Arrays.stream(Bridge.values()).forEach(bridge -> {
-            playerStatusMap.put(bridge, new ArrayList<>());
-        });
+        Arrays.stream(Bridge.values())
+                .forEach(bridge -> playerStatusMap.put(bridge, new ArrayList<>()));
     }
 
     /**
      * update player's status
      */
-    public void update(boolean movingResult, int location, String playerMoving) {
-        this.movingResultSymbol = getMovingResultSymbol(movingResult);
+    public void update(boolean isMovable, int location, String playerMoving) {
+        this.movingResultSymbol = GameResult.getMovingResultBy(isMovable);
         updatePlayerStatusMap(location, playerMoving);
     }
 
@@ -39,17 +39,6 @@ public class PlayerStatus {
             return;
         }
         eachBridgeStatus.add(location, " ");
-    }
-
-    public String getMovingResultSymbol(boolean movingResult) {
-        return Arrays.stream(GameResult.values())
-                .filter(result -> result.isEqualTo(movingResult))
-                .findFirst().get().getSymbol();
-
-//        if (movingResult) {
-//            return MOVABLE_SYMBOL;
-//        }
-//        return UNMOVABLE_SYMBOL;
     }
 
     /**
@@ -71,7 +60,7 @@ public class PlayerStatus {
         return playerStatus;
     }
 
-    //util 로직
+    // 서비스 로직
     public String statusToString(List<String> eachBridgeStatus) {
         StringJoiner sj = new StringJoiner(" | ", "[ ", " ]");
 
