@@ -59,13 +59,33 @@ class BridgeGameTest {
         );
     }
 
-
-    @Test
-    void retry() {
+    /**
+     *
+     * */
+    @DisplayName("이동 시, 다리 길이 이상 이동하려고 하면 예외 발생 테스트")
+    @ParameterizedTest
+    @MethodSource("providePlayerMovings_And_ExpectedStatus")
+    void moveErrorTest(List<String> playerMovings, String expectedStatus) {
     }
 
-    @Test
-    void quit() {
+    @DisplayName("retry시, 플레이어 상태 테스트")
+    @ParameterizedTest
+    @MethodSource("providePlayerMovings_And_RetriedStatus")
+    void retryTest(List<String> playerMovings, String expectedStatus) {
+        for(String playingMoving : playerMovings) {
+            bridgeGame.move(playingMoving);
+        }
+        bridgeGame.retry();
+        assertThat(bridgeGame.getPlayerStatus()).contains(expectedStatus);
+    }
+
+    private static Stream<Arguments> providePlayerMovings_And_RetriedStatus() {
+        return Stream.of(
+                Arguments.of(List.of("U"), "[  ]\n[  ]"),
+                Arguments.of(List.of("U","U"), "[  ]\n[  ]"),
+                Arguments.of(List.of("U","U","D"), "[  ]\n[  ]"),
+                Arguments.of(List.of("U","U","D","D"), "[  ]\n[  ]")
+        );
     }
 
     @Test
