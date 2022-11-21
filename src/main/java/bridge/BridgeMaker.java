@@ -5,7 +5,7 @@ import bridge.domain.Bridge;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import bridge.domain.Bridge;
 import static bridge.BridgeRule.*;
 
 /**
@@ -38,12 +38,21 @@ public class BridgeMaker {
     }
 
     public String getSymbolByNumber(int number) {
-        
-        return Arrays.stream(Bridge.values())
-                .filter(bridge -> bridge.getMappingNumber() == number)
-                .findFirst()
-                .get().getSymbol();
+//        return Arrays.stream(Bridge.values())
+//                .filter(bridge -> bridge.getMappingNumber() == number)
+//                .findFirst()
+//                .get().getSymbol();
+
+        if (number == Bridge.DOWN_BRIDGE.getMappingNumber()) {
+            return Bridge.DOWN_BRIDGE.getSymbol();
+        }
+        return Bridge.UP_BRIDGE.getSymbol();
     }
+
+    //        if (number == DOWN_BRIDGE_NUMBER) {
+    //            return DOWN_BRIDGE_SYMBOL;
+    //        }
+    //        return UP_BRIDGE_SYMBOL;
 
 
 }
