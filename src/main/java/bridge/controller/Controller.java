@@ -19,15 +19,10 @@ public class Controller {
     private final Player player = new Player();
 
     public void generate() {
-        try {
             outputView.printStart();
             BridgeGame bridgeGame = createBridgeGame();
             playBridgeGame(bridgeGame);
             outputView.printResult(bridgeGame);
-
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-        }
     }
 
     public BridgeGame createBridgeGame() {
