@@ -1,11 +1,10 @@
 package bridge.controller;
 
 import bridge.BridgeMaker;
-import bridge.BridgeNumberGenerator;
 import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.BridgeGame;
+import bridge.domain.GameRule;
 import bridge.domain.Player;
-import bridge.util.validation.GameValidator;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
@@ -14,8 +13,7 @@ import java.util.List;
 public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
-    private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private final Player player = new Player();
 
     public void generate() {
@@ -34,13 +32,12 @@ public class Controller {
 
     private int inputBridgeSize() {
         try {
-            int size = inputView.readBridgeSize();
-            GameValidator.validateBridgeSize(size); //브릿지 체커로 수정....? (다리 길이 입력에 문제)
+            return GameRule.getBridgeSize(inputView.readBridgeSize());
 
-            return size;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
+
         return inputBridgeSize();
     }
 
@@ -60,10 +57,8 @@ public class Controller {
 
     public String inputPlayerMoving() {
         try {
-            String playerMoving = inputView.readMoving();
-            GameValidator.validateMovingInput(playerMoving); //수정...브릿지 게임과 반복됨 (이동 입력에 문제)
+            return GameRule.getPlayerMoving(inputView.readMoving());
 
-            return playerMoving;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
@@ -79,10 +74,8 @@ public class Controller {
 
     public String inputCommand() {
         try {
-            String command = inputView.readGameCommand();
-            GameValidator.validateCommand(command);       //수정...브릿지 게임과 반복됨 (명령 입력에 문제)
+            return GameRule.getCommand(inputView.readGameCommand());
 
-            return command;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
