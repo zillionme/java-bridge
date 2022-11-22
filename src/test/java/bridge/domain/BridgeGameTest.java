@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BridgeGameTest {
     private BridgeGame bridgeGame;
@@ -31,14 +30,6 @@ class BridgeGameTest {
                 Arguments.of(List.of("U", "U"), "[  ]\n[  ]"),
                 Arguments.of(List.of("U", "U", "D"), "[  ]\n[  ]"),
                 Arguments.of(List.of("U", "U", "D", "D"), "[  ]\n[  ]")
-        );
-    }
-
-    private static Stream<Arguments> providePlayerMovings() {
-        return Stream.of(
-                Arguments.of(List.of("U", "U", "U", "D", "D")),
-                Arguments.of(List.of("U", "U", "U", "D", "D", "U"))
-
         );
     }
 
@@ -64,19 +55,6 @@ class BridgeGameTest {
             bridgeGame.move(playingMoving);
         }
         assertThat(bridgeGame.getPlayerStatus()).contains(expectedStatus);
-    }
-
-    @DisplayName("이동 시, 다리 길이 이상 이동하려고 하면 예외 발생 테스트")
-    @ParameterizedTest
-    @MethodSource("providePlayerMovings")
-    void moveErrorTest(List<String> playerMovings) {
-
-        assertThatThrownBy(() -> {
-            for (String moving : playerMovings) {
-                bridgeGame.move(moving);
-            }
-        })
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("retry시, 플레이어 상태 테스트")
