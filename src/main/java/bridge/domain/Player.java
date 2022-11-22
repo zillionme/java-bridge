@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.util.validation.GameValidator;
-
 import java.util.List;
 
 public class Player {

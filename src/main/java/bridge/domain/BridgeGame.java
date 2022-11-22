@@ -1,7 +1,6 @@
 package bridge.domain;
 
 import bridge.util.validation.GameValidator;
-
 import java.util.List;
 
 import static bridge.util.constants.GameRule.COMMAND_QUIT;
@@ -55,6 +54,7 @@ public class BridgeGame {
     public String getGameResult() {
         return GameResult.getGameResultBy(isSuccessfullyCompleted());
     }
+
     public boolean isSuccessfullyCompleted() {
         return player.isArrived(bridge.size());
     }

@@ -17,7 +17,9 @@ public class PlayerStatus {
                 .forEach(bridge -> playerStatusMap.put(bridge, new ArrayList<>()));
     }
 
-    /** update player's status */
+    /**
+     * update player's status
+     */
     public void update(boolean isMovable, String playerMoving) {
         this.movingResultSymbol = GameResult.getMovingResultBy(isMovable);
         updatePlayerStatusMap(playerMoving);
@@ -39,7 +41,9 @@ public class PlayerStatus {
         eachBridgeStatus.add(" ");
     }
 
-    /** toString */
+    /**
+     * toString
+     */
     @Override
     public String toString() {
         return String.join("\n", getPlayerStatus());

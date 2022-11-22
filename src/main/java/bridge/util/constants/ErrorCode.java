@@ -13,7 +13,7 @@ public enum ErrorCode {
     private final String errorMessage;
 
     ErrorCode(String errorMessage) {
-        this.errorMessage = ERROR_BEGIN+errorMessage;
+        this.errorMessage = ERROR_BEGIN + errorMessage;
     }
 
     public IllegalArgumentException throwIllegalArgumentException() {

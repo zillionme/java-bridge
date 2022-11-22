@@ -19,10 +19,10 @@ public class Controller {
     private final Player player = new Player();
 
     public void generate() {
-            outputView.printStart();
-            BridgeGame bridgeGame = createBridgeGame();
-            playBridgeGame(bridgeGame);
-            outputView.printResult(bridgeGame);
+        outputView.printStart();
+        BridgeGame bridgeGame = createBridgeGame();
+        playBridgeGame(bridgeGame);
+        outputView.printResult(bridgeGame);
     }
 
     public BridgeGame createBridgeGame() {
@@ -54,8 +54,8 @@ public class Controller {
     }
 
     public void moveByInput(BridgeGame bridgeGame) {
-            String playerMoving = inputPlayerMoving();
-            bridgeGame.move(playerMoving);
+        String playerMoving = inputPlayerMoving();
+        bridgeGame.move(playerMoving);
     }
 
     public String inputPlayerMoving() {

@@ -12,7 +12,7 @@ public class ViewValidator {
     }
 
     public static void isNotEmptyOrNull(String input) {
-        if(input==null || input.isEmpty()) {
+        if (input == null || input.isEmpty()) {
 
             ErrorCode.ERROR_ULL_OR_EMPTY.throwIllegalArgumentException();
         }
