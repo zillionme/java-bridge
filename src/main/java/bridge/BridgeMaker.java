@@ -22,19 +22,11 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         while (bridge.size() != size) {
-            addMovesToBridge(bridge);
+            int randomNumber = bridgeNumberGenerator.generate();
+            bridge.add(Bridge.getBridgeSymbolBy(randomNumber));
         }
 
         return bridge;
-    }
-
-    public void addMovesToBridge(List<String> bridge) {
-        int randomNumber = bridgeNumberGenerator.generate();
-        bridge.add(getSymbolByNumber(randomNumber));
-    }
-
-    public String getSymbolByNumber(int number) {
-        return Bridge.getSymbolBy(number);
     }
 
 }
