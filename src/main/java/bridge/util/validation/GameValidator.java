@@ -2,7 +2,6 @@ package bridge.util.validation;
 
 import bridge.domain.Bridge;
 import bridge.util.constants.ErrorCode;
-import bridge.util.constants.Exception;
 import java.util.List;
 
 import static bridge.util.constants.GameRule.BRIDGE_LENGTH_MAX;
@@ -14,8 +13,7 @@ public class GameValidator {
     public static void validateBridgeSize(int size) {
 
         if (BRIDGE_LENGTH_MAX < size || size < BRIDGE_LENGTH_MIN) {
-//            throw new IllegalArgumentException(Exception.ERROR_MESSAGE_OUT_OF_RANGE);
-            ErrorCode.ERROR_MESSAGE_OUT_OF_RANGE.throwException();
+            ErrorCode.ERROR_INVALID_BRIDGE_SIZE.throwIllegalArgumentException();
 
         }
     }
@@ -26,22 +24,19 @@ public class GameValidator {
                 return;
             }
         }
-//        throw new IllegalArgumentException(Exception.ERROR_MESSAGE_INVALID_MOVE);
-        ErrorCode.ERROR_MESSAGE_INVALID_MOVE.throwException();
-
+        ErrorCode.ERROR_INVALID_BRIDGE_TO_MOVE.throwIllegalArgumentException();
     }
 
     public static void validateCommand(String input) {
         if (!input.equals(COMMAND_RETRY) && !input.equals(COMMAND_QUIT)) {
 //            throw new IllegalArgumentException(Exception.ERROR_MESSAGE_INVALID_COMMAND);
-            ErrorCode.ERROR_MESSAGE_INVALID_COMMAND.throwException();
+            ErrorCode.ERROR_INVALID_COMMAND.throwIllegalArgumentException();
         }
     }
 
     public static void validatePlayerLocation(int location, List<String> bridge) {
         if(location >= bridge.size()) {
-//            throw new IllegalArgumentException(Exception.ERROR_MESSAGE_OUT_RANGE_OF_BRIDGE);
-            ErrorCode.ERROR_MESSAGE_OUT_RANGE_OF_BRIDGE.throwException();
+            ErrorCode.ERROR_INVALID_LOCATION_TO_MOVE.throwIllegalArgumentException();
         }
     }
 }
