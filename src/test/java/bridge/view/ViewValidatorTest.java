@@ -11,9 +11,9 @@ class ViewValidatorTest {
 
     @DisplayName("입력 값이 양수가 아니면, 예외 발생 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"-1","가","A"})
+    @ValueSource(strings = {"-1", "가", "A"})
     void isNumberErrorTest(String input) {
-        assertThatThrownBy(()-> ViewValidator.isNumber(input))
+        assertThatThrownBy(() -> ViewValidator.isNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,7 +21,7 @@ class ViewValidatorTest {
     @ParameterizedTest
     @NullAndEmptySource
     void isNotEmptyOrNullTest(String input) {
-        assertThatThrownBy(()->ViewValidator.isNotEmptyOrNull(input))
+        assertThatThrownBy(() -> ViewValidator.isNotEmptyOrNull(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

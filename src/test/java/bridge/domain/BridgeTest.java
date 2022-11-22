@@ -12,15 +12,15 @@ class BridgeTest {
 
     @DisplayName("입력한 숫자에 해당하는 다리가 없는 경우, 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {2,11})
+    @ValueSource(ints = {2, 11})
     void getSymbolByExceptionTest(int number) {
-        assertThatThrownBy(()->Bridge.getBridgeSymbolBy(number))
+        assertThatThrownBy(() -> Bridge.getBridgeSymbolBy(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력한 숫자에 해당하는 다리의 기호를 반환한다.")
     @ParameterizedTest
-    @CsvSource(value = {"0,D","1,U"})
+    @CsvSource(value = {"0,D", "1,U"})
     void getSymbolByTest(int number, String expectedSymbol) {
         assertThat(Bridge.getBridgeSymbolBy(number))
                 .isEqualTo(expectedSymbol);

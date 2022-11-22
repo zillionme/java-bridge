@@ -10,6 +10,6 @@ class BridgeMakerTest {
     void makeBridge() {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         assertThat(bridgeMaker.makeBridge(5).stream()
-                .allMatch(step->step.equals("U")||step.equals("D"))).isTrue();
+                .allMatch(step -> step.equals("U") || step.equals("D"))).isTrue();
     }
 }

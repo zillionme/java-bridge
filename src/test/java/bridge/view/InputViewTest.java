@@ -11,7 +11,7 @@ class InputViewTest {
     @ParameterizedTest
     @NullAndEmptySource
     void castToIntErrorTest(String input) {
-        assertThatThrownBy(()->inputView.castToInt(input))
+        assertThatThrownBy(() -> inputView.castToInt(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
