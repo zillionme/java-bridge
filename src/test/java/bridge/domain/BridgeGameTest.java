@@ -35,6 +35,14 @@ class BridgeGameTest {
         );
     }
 
+    private static Stream<Arguments> providePlayerMovings() {
+        return Stream.of(
+                Arguments.of(List.of("U", "U", "U", "D", "D")),
+                Arguments.of(List.of("U", "U", "U", "D", "D", "U"))
+
+        );
+    }
+
     @BeforeEach
     void set() {
         List<String> bridge = List.of("U", "U", "U", "D");
@@ -72,22 +80,13 @@ class BridgeGameTest {
     @MethodSource("providePlayerMovings")
     void moveErrorTest(List<String> playerMovings) {
 
-        assertThatThrownBy(()-> {
-            for(String moving : playerMovings) {
+        assertThatThrownBy(() -> {
+            for (String moving : playerMovings) {
                 bridgeGame.move(moving);
             }
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    private static Stream<Arguments> providePlayerMovings() {
-        return Stream.of(
-                Arguments.of(List.of("U", "U", "U", "D","D")),
-                Arguments.of(List.of("U", "U", "U", "D","D","U"))
-
-        );
-    }
-
 
     @DisplayName("retry시, 플레이어 상태 테스트")
     @ParameterizedTest
