@@ -1,15 +1,28 @@
-package bridge.util.validation;
+package bridge.domain;
 
-import bridge.domain.Bridge;
-import bridge.util.constants.ErrorCode;
-import java.util.List;
+import bridge.constants.ErrorCode;
 
-import static bridge.util.constants.GameRule.BRIDGE_LENGTH_MAX;
-import static bridge.util.constants.GameRule.BRIDGE_LENGTH_MIN;
-import static bridge.util.constants.GameRule.COMMAND_QUIT;
-import static bridge.util.constants.GameRule.COMMAND_RETRY;
+public class GameRule {
+    public static final int BRIDGE_LENGTH_MIN = 3;
+    public static final int BRIDGE_LENGTH_MAX = 20;
+    public static final String COMMAND_RETRY = "R";
+    public static final String COMMAND_QUIT = "Q";
 
-public class GameValidator {
+    public static int getBridgeSize(int size) {
+        validateBridgeSize(size);
+        return size;
+    }
+
+    public static String getPlayerMoving(String input) {
+        validateMovingInput(input);
+        return input;
+    }
+
+    public static String getCommand(String command) {
+        validateCommand(command);
+        return command;
+    }
+
     public static void validateBridgeSize(int size) {
         if (BRIDGE_LENGTH_MAX < size || size < BRIDGE_LENGTH_MIN) {
 
@@ -32,9 +45,4 @@ public class GameValidator {
         }
     }
 
-    public static void validatePlayerLocation(int location, List<String> bridge) {
-        if (location >= bridge.size()) {
-            ErrorCode.ERROR_INVALID_LOCATION_TO_MOVE.throwIllegalArgumentException();
-        }
-    }
 }
