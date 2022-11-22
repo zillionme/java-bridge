@@ -1,5 +1,6 @@
 package bridge.util.validation;
 
+import bridge.util.constants.ErrorCode;
 import bridge.util.constants.Exception;
 
 public class ViewValidator {
@@ -8,12 +9,15 @@ public class ViewValidator {
             return;
         }
 
-        throw new IllegalArgumentException(Exception.ERROR_MESSAGE_FOR_NOT_NUMBER);
+        ErrorCode.ERROR_MESSAGE_FOR_NOT_NUMBER.throwException();
+//        throw new IllegalArgumentException(Exception.ERROR_MESSAGE_FOR_NOT_NUMBER);
     }
 
     public static void isNotEmptyOrNull(String input) {
         if(input==null || input.isEmpty()) {
-            throw new IllegalArgumentException(Exception.ERROR_MESSAGE_FOR_NULL_OR_EMPTY);
+            ErrorCode.ERROR_MESSAGE_FOR_NULL_OR_EMPTY.throwException();
+
+//            throw new IllegalArgumentException(Exception.ERROR_MESSAGE_FOR_NULL_OR_EMPTY);
         }
     }
 }

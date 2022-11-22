@@ -107,4 +107,15 @@ class BridgeGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("잘못된 명령이 들어왔을 때, 예외발생 메시지 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"q,k,h"})
+    void executeCommandErrorMessageTest(String command) {
+        try {
+            bridgeGame.executeCommand(command);
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage()).contains("[ERROR]");
+        }
+    }
+
 }

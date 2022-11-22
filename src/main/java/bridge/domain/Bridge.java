@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.util.constants.ErrorCode;
+
 import java.util.Arrays;
 
 import static bridge.util.constants.Exception.ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER;
@@ -20,7 +22,8 @@ public enum Bridge {
         return Arrays.stream(Bridge.values())
                 .filter(bridge -> bridge.getMappingNumber() == number)
                 .findFirst()
-                .orElseThrow(()-> new IllegalArgumentException(ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER))
+//                .orElseThrow(()-> new IllegalArgumentException(ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER))
+                .orElseThrow(ErrorCode.ERROR_MESSAGE_FOR_NOT_BRIDGE_NUMBER::throwException)
                 .getSymbol();
     }
 
