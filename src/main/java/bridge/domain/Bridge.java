@@ -15,7 +15,7 @@ public enum Bridge {
         this.mappingNumber = mappingNumber;
     }
 
-    public static String getSymbolBy(int number) {
+    public static String getBridgeSymbolBy(int number) {
         return Arrays.stream(Bridge.values())
                 .filter(bridge -> bridge.getMappingNumber() == number)
                 .findFirst()
@@ -30,4 +30,5 @@ public enum Bridge {
     public int getMappingNumber() {
         return mappingNumber;
     }
+
 }

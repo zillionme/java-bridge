@@ -14,7 +14,7 @@ class BridgeTest {
     @ParameterizedTest
     @ValueSource(ints = {2,11})
     void getSymbolByExceptionTest(int number) {
-        assertThatThrownBy(()->Bridge.getSymbolBy(number))
+        assertThatThrownBy(()->Bridge.getBridgeSymbolBy(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +22,7 @@ class BridgeTest {
     @ParameterizedTest
     @CsvSource(value = {"0,D","1,U"})
     void getSymbolByTest(int number, String expectedSymbol) {
-        assertThat(Bridge.getSymbolBy(number))
+        assertThat(Bridge.getBridgeSymbolBy(number))
                 .isEqualTo(expectedSymbol);
     }
 }
