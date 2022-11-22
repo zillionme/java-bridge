@@ -31,11 +31,22 @@ public class Controller {
     }
 
     public BridgeGame createBridgeGame() {
-        int size = inputView.readBridgeSize();
-        GameValidator.validateBridgeSize(size);
+        int size = inputBridgeSize();
         List<String> bridge = bridgeMaker.makeBridge(size);
 
         return new BridgeGame(bridge, player);
+    }
+
+    private int inputBridgeSize() {
+        try {
+            int size = inputView.readBridgeSize();
+            GameValidator.validateBridgeSize(size); //브릿지 체커로 수정....? (다리 길이 입력에 문제)
+
+            return size;
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
+        return inputBridgeSize();
     }
 
     public void playBridgeGame(BridgeGame bridgeGame) {
@@ -48,16 +59,39 @@ public class Controller {
     }
 
     public void moveByInput(BridgeGame bridgeGame) {
-        String playerMoving = inputView.readMoving();
+            String playerMoving = inputPlayerMoving();
+            bridgeGame.move(playerMoving);
+    }
 
-        bridgeGame.move(playerMoving);
+    public String inputPlayerMoving() {
+        try {
+            String playerMoving = inputView.readMoving();
+            GameValidator.validateMovingInput(playerMoving); //수정...브릿지 게임과 반복됨 (이동 입력에 문제)
+
+            return playerMoving;
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
+        return inputPlayerMoving();
     }
 
     public void decideToKeepPlaying(BridgeGame bridgeGame) {
         if (player.isFailed()) { //이동결과 실패하면, 명령 받기
-            String command = inputView.readGameCommand();
+            String command = inputCommand();
             bridgeGame.executeCommand(command);
         }
+    }
+
+    public String inputCommand() {
+        try {
+            String command = inputView.readGameCommand();
+            GameValidator.validateCommand(command);       //수정...브릿지 게임과 반복됨 (명령 입력에 문제)
+
+            return command;
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
+        return inputCommand();
     }
 
 }
