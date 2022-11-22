@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import bridge.util.constants.ErrorCode;
+import bridge.constants.ErrorCode;
 import java.util.Arrays;
 
 public enum Bridge {
