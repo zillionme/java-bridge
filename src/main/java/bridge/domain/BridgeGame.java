@@ -1,10 +1,10 @@
 package bridge.domain;
 
-import bridge.util.validation.GameValidator;
 import java.util.List;
 
-import static bridge.util.constants.GameRule.COMMAND_QUIT;
-import static bridge.util.constants.GameRule.COMMAND_RETRY;
+import static bridge.domain.GameRule.COMMAND_QUIT;
+import static bridge.domain.GameRule.COMMAND_RETRY;
+
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -21,7 +21,6 @@ public class BridgeGame {
     }
 
     public boolean judge(String playerMoving) {
-        GameValidator.validateMovingInput(playerMoving);
         return player.isMovableBy(playerMoving, bridge);
     }
 
@@ -39,8 +38,6 @@ public class BridgeGame {
     }
 
     public void executeCommand(String command) {
-        GameValidator.validateCommand(command);
-
         if (command.equals(COMMAND_RETRY)) {
             retry();
         }

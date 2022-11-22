@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -57,14 +56,6 @@ class BridgeGameTest {
         assertThat(bridgeGame.judge(playerMoving)).isEqualTo(expected);
     }
 
-    @DisplayName("다리 기호가 아닌, 이동 값을 입력하는 경우 예외 발생하는지 테스트한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"K", "R"})
-    void judgeErrorTest(String playerMoving) {
-        assertThatThrownBy(() -> bridgeGame.judge(playerMoving))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("이동 후, 플레이어 상태가 업데이트 되는지 확인 테스트")
     @ParameterizedTest
     @MethodSource("providePlayerMovings_And_ExpectedStatus")
@@ -97,25 +88,6 @@ class BridgeGameTest {
         }
         bridgeGame.retry();
         assertThat(bridgeGame.getPlayerStatus()).contains(expectedStatus);
-    }
-
-    @DisplayName("잘못된 명령이 들어왔을 때, 예외발생하는지 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"q,k,h"})
-    void executeCommandErrorTest(String command) {
-        assertThatThrownBy(() -> bridgeGame.executeCommand(command))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("잘못된 명령이 들어왔을 때, 예외발생 메시지 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"q,k,h"})
-    void executeCommandErrorMessageTest(String command) {
-        try {
-            bridgeGame.executeCommand(command);
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage()).contains("[ERROR]");
-        }
     }
 
 }
