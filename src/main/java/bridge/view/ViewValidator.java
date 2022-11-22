@@ -1,6 +1,6 @@
-package bridge.util.validation;
+package bridge.view;
 
-import bridge.util.constants.ErrorCode;
+import bridge.constants.ErrorCode;
 
 public class ViewValidator {
     public static void isNumber(String input) {

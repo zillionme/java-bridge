@@ -1,4 +1,4 @@
-package bridge.util.validation;
+package bridge.view;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +13,7 @@ class ViewValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1","가","A"})
     void isNumberErrorTest(String input) {
-        assertThatThrownBy(()->ViewValidator.isNumber(input))
+        assertThatThrownBy(()-> ViewValidator.isNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
