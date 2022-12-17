@@ -14,4 +14,7 @@ public class Controller {
         }
         return get ();
     }
+
+    public static class test {
+    }
 }
